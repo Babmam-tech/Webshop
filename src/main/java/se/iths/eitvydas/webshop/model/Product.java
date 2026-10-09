@@ -46,4 +46,9 @@ public class Product {
             this.description = description;
         }
 
+        public String toFileLine(){
+        return this.articleNumber + ";" + this.title + ";" + this.price + ";" + this.description;
+        }
+
+
 }
