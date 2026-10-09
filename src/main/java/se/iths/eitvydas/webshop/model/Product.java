@@ -50,5 +50,12 @@ public class Product {
         return this.articleNumber + ";" + this.title + ";" + this.price + ";" + this.description;
         }
 
+        public static Product fromFileLine(String line){
+            String [] parts = line.split(";");
+            double price = Double.parseDouble(parts[2]);
+            return new Product(parts[0],parts[1],price,parts[3]);
+
+        }
+
 
 }
