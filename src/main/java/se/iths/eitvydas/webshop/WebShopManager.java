@@ -59,6 +59,13 @@ public class WebShopManager {
                     IO.println("Rabatterat pris: " + discount.calculatePrice(product.getPrice()));
                 }
             } else if (choice.equals("3")) {
+                String articleNumber = IO.readln("Mata in artikenummer: ");
+                Product product = getProductFromStorage(articleNumber);
+                if (product == null) {
+                    IO.println("not found");
+                } else {
+                    IO.println(product.getArticleNumber() + " " + product.getTitle() + " " + product.getPrice() + " " + product.getDescription());
+                }
             } else if (choice.equals("4")) {
                 running = false;
             } else {
