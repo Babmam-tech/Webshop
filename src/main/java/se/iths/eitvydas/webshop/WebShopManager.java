@@ -53,6 +53,11 @@ public class WebShopManager {
                 Product product = new Product(articleNumber, title, price, description);
                 saveProductToStorage(product);
             } else if (choice.equals("2")) {
+                List<Product> products = getProductsFromStorage();
+                for (Product product : products) {
+                    IO.println(product.getArticleNumber() + " " + product.getTitle() + " " + product.getPrice() + " " + product.getDescription());
+                    IO.println("Rabatterat pris: " + discount.calculatePrice(product.getPrice()));
+                }
             } else if (choice.equals("3")) {
             } else if (choice.equals("4")) {
                 running = false;
