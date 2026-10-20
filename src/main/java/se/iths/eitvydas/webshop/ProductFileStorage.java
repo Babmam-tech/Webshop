@@ -45,6 +45,13 @@ public class ProductFileStorage implements ProductStorage{
 
     @Override
     public Product getProduct(String articleNumber) {
+        List<Product> products = getProducts();
+
+        for (Product product : products) {
+            if (product.getArticleNumber().equals(articleNumber)) {
+                return product;
+            }
+        }
         return null;
     }
 }
