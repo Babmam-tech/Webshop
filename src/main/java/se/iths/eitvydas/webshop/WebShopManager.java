@@ -11,8 +11,11 @@ public class WebShopManager {
 
     private ProductStorage productStorage;
 
-    public WebShopManager(ProductStorage productStorage) {
+    private OutInputHandler outInputHandler;
+
+    public WebShopManager(ProductStorage productStorage, OutInputHandler outInputHandler) {
         this.productStorage = productStorage;
+        this.outInputHandler = outInputHandler;
     }
 
     public void saveProductToStorage(Product product) {
