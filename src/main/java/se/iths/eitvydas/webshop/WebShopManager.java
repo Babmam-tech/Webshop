@@ -31,7 +31,7 @@ public class WebShopManager {
     }
 
     public void startWebshop() {
-        String code = IO.readln("Ange rabattkod: ");
+        String code = outInputHandler.prompt("Ange rabattkod: ");
         Discount discount = null;
         if (code.equals("halfprice")){
             discount = new HalfPriceDiscount();
@@ -41,38 +41,33 @@ public class WebShopManager {
 
         boolean running = true;
         while (running) {
-            IO.println("1. Lägg till produkt");
-            IO.println("2. Lista alla produkter");
-            IO.println("3. Visa information om en produkt");
-            IO.println("4. Avsluta");
-
-            String choice = IO.readln("Välj: ");
+            String choice = outInputHandler.menu();
 
             if (choice.equals("1")){
-                String articleNumber = IO.readln("Mata in artikenummer: ");
-                String title = IO.readln("Mata in titel: ");
-                double price = Double.parseDouble(IO.readln("Mata in pris: "));
-                String description = IO.readln("Mata in beskrivning: ");
+                String articleNumber = outInputHandler.prompt("Mata in artikenummer: ");
+                String title = outInputHandler.prompt("Mata in titel: ");
+                double price = Double.parseDouble(outInputHandler.prompt("Mata in pris: "));
+                String description = outInputHandler.prompt("Mata in beskrivning: ");
                 Product product = new Product(articleNumber, title, price, description);
                 saveProductToStorage(product);
             } else if (choice.equals("2")) {
                 List<Product> products = getProductsFromStorage();
                 for (Product product : products) {
-                    IO.println(product.getArticleNumber() + " " + product.getTitle() + " " + product.getPrice() + " " + product.getDescription());
-                    IO.println("Rabatterat pris: " + discount.calculatePrice(product.getPrice()));
+                    outInputHandler.info(product.getArticleNumber() + " " + product.getTitle() + " " + product.getPrice() + " " + product.getDescription());
+                    outInputHandler.info("Rabatterat pris: " + discount.calculatePrice(product.getPrice()));
                 }
             } else if (choice.equals("3")) {
-                String articleNumber = IO.readln("Mata in artikenummer: ");
+                String articleNumber = outInputHandler.prompt("Mata in artikenummer: ");
                 Product product = getProductFromStorage(articleNumber);
                 if (product == null) {
-                    IO.println("not found");
+                    outInputHandler.info("not found");
                 } else {
-                    IO.println(product.getArticleNumber() + " " + product.getTitle() + " " + product.getPrice() + " " + product.getDescription());
+                    outInputHandler.info(product.getArticleNumber() + " " + product.getTitle() + " " + product.getPrice() + " " + product.getDescription());
                 }
             } else if (choice.equals("4")) {
                 running = false;
             } else {
-                IO.println("Ogiltigt val");
+                outInputHandler.info("Ogiltigt val");
             }
         }
 
