@@ -44,7 +44,7 @@ public class WebShopManager {
             String choice = outInputHandler.menu();
 
             if (choice.equals("1")){
-                String articleNumber = outInputHandler.prompt("Mata in artikenummer: ");
+                String articleNumber = outInputHandler.prompt("Mata in artikelnummer: ");
                 String title = outInputHandler.prompt("Mata in titel: ");
                 double price = Double.parseDouble(outInputHandler.prompt("Mata in pris: "));
                 String description = outInputHandler.prompt("Mata in beskrivning: ");
@@ -57,7 +57,7 @@ public class WebShopManager {
                     outInputHandler.info("Rabatterat pris: " + discount.calculatePrice(product.getPrice()));
                 }
             } else if (choice.equals("3")) {
-                String articleNumber = outInputHandler.prompt("Mata in artikenummer: ");
+                String articleNumber = outInputHandler.prompt("Mata in artikelnummer: ");
                 Product product = getProductFromStorage(articleNumber);
                 if (product == null) {
                     outInputHandler.info("not found");

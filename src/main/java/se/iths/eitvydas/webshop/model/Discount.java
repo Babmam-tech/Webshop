@@ -6,9 +6,7 @@ public abstract class Discount {
 
     protected String description;
 
-    public String getDescription(){
-        return this.description;
-    }
+    public String getDescription() { return description; }
 
     public abstract double calculatePrice(double originalPrice);
 
